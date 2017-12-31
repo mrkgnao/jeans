@@ -1,4 +1,20 @@
-# Jeans: stop writing typeclass instances!
+# Jeans
+
+We have a fairly well-known piece of kit that uses a theorem prover to find all
+total Haskell functions with a given type. (`djinn`.)
+
+We have a way to use Template Haskell to reflect those into real Haskell functions. (`djinn-th`.)
+
+We have property testing to help verify equational laws. (`QuickCheck` etc.)
+
+This brings up two possibilities:
+
+* Write your own types and have law-abiding Functor/Applicative/Monad/Monoid/Foldable etc. instances
+  generated automatically if they exist.
+* My original goal: generate random ADTs, including ones with function types in them, and see
+  if they admit interesting instances of Applicative, Monad, or other "control" structures that aren't obvious
+  combinations of well-known ones. (E.g. `StateT (Reader r) a` isn't interesting.) In essence,
+  I'd like my laptop to search for new monads, at the price of a bit of CPU load. :)
 
 Well, eventually.
 
