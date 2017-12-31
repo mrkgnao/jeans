@@ -9,14 +9,23 @@ We have property testing to help verify equational laws. (`QuickCheck` etc.)
 
 This brings up two possibilities:
 
-* Write your own types and have law-abiding Functor/Applicative/Monad/Monoid/Foldable etc. instances
-  generated automatically if they exist.
-* My original goal: generate random ADTs, including ones with function types in them, and see
-  if they admit interesting instances of Applicative, Monad, or other "control" structures that aren't obvious
-  combinations of well-known ones. (E.g. `StateT (Reader r) a` isn't interesting.) In essence,
-  I'd like my laptop to search for new monads, at the price of a bit of CPU load. :)
+### `deriving` on steroids
+Write your own types and have law-abiding Functor/Applicative/Monad/Monoid/Foldable etc. instances
+generated automatically if they exist: we just ask `djinn` to generate functions with the types we want, and
+use QuickCheck to check naturality, functoriality, and so on.
+
+### New Monads Plan™
+My original goal: generate random ADTs, including ones with function types in them, and see
+if they admit interesting instances of Applicative, Monad, or other "control" structures that aren't obvious
+combinations of well-known ones. (E.g. `StateT (Reader r) a` isn't interesting.) In essence,
+I'd like my laptop to search for new monads, at the price of a bit of CPU load. :)
 
 Well, eventually.
+
+# Where the code comes from
+
+This is a "fork" of sorts of `djinn-th`: the link to the original repo 404ed, so I grabbed the latest `.tar.gz`
+off Hackage and started working off of it. `djinn-th` is itself a fork of `djinn` by Lennart Augustsson.
 
 # License
 
