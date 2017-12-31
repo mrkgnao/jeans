@@ -1,3 +1,7 @@
+# Jeans: stop writing typeclass instances!
+
+Well, eventually.
+
 # License
 
 BSD3.
