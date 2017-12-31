@@ -1,6 +1,6 @@
 let 
   rien = import /home/frob/code/rien/rien.nix {
-    packageName = "djinn-th";
+    packageName = "jeans";
     packagePath = ./.;
 
     # Instead of using <nixpkgs>, use a lock-file to stick to

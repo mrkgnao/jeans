@@ -1,18 +1,14 @@
-Name:                djinn-th
+Name:                jeans
 Version:             0.0.1
-Synopsis:            Generate executable Haskell code from a type
-Description:         Djinn uses a theorem prover for intuitionistic
-                     propositional logic to generate a Haskell
-                     expression when given a type.
-                     .
-                     Djinn-TH uses Template Haskell to turn this
-                     expression into executable code.
-
-Homepage:            http://gitorious.org/djinn-th
+Synopsis:            Automatically create law-abiding typeclass instances
+Description:         Jeans builds upon the theorem prover-based Djinn and 
+                     Djinn-TH projects, together with property testing, 
+                     to automatically generate law-abiding instances for 
+                     typeclasses like Functor and Monad.
+Homepage:            https://github.com/mrkgnao/jeans
 License:             BSD3
 License-file:        LICENSE
-Author:              Claude Heiland-Allen
-Maintainer:          claudiusmaximus@goto10.org
+Author:              Soham Chowdhury
 Category:            Language
 Build-type:          Simple
 
@@ -25,10 +21,10 @@ Library
                    , Language.Haskell.Djinn.LJTFormula
                    , Language.Haskell.Djinn.HTypes
                    , Test
+                   , Types
   Build-depends:     base 
                    , template-haskell 
                    , containers
                    , logict
                    , QuickCheck
   GHC-options:       -Wall
-  GHC-prof-options:  -prof -auto-all

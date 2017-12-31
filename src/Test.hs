@@ -94,15 +94,14 @@ propBool prop = do
 is_fmap :: StateFmapT S A A -> IO Bool
 is_fmap f = propBool (law_fmap_id f)
 
-is_monad :: (Int, Int, Int) -> StateFmapQ -> StatePureQ -> StateBindQ -> IO Bool
-is_monad ix cfmap cpure cbind = do
+is_monad :: StateFmapQ -> StatePureQ -> StateBindQ -> IO Bool
+is_monad cfmap cpure cbind = do
   r <- liftAnd
     [ propBool (law_fmap_id cfmap)
     , propBool (law_monad_left_identity cpure cbind)
     , propBool (law_monad_right_identity cpure cbind)
     , propBool (law_monad_assoc cbind cbind cbind)
     ]
-  -- when r (putStrLn $ "Candidate #" ++ show ix ++ " passed!")
   pure r
 
 liftAnd :: (Monad m) => [m Bool] -> m Bool
@@ -124,8 +123,8 @@ candidate_instances =
 main :: IO ()
 main = do
   putStrLn "Generating law-abiding Functor/Monad implementations for State."
-  ixs <- fmap (map fst) $ filterM
-    (\(ix, (StateFmap f, StatePure p, StateBind b)) -> is_monad ix f p b)
+  ixs <- map fst <$> filterM
+    (\(_, (StateFmap f, StatePure p, StateBind b)) -> is_monad f p b)
     candidate_instances
   putStrLn ("Found " ++ show (length ixs) ++ " law-abiding implementations.\n")
   forM_ ixs $ \i@(fi, pi, bi) -> do
